@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import fs from "node:fs";
+import { varlockNextConfigPlugin } from "@varlock/nextjs-integration/plugin";
 
 const inDocker = fs.existsSync("/.dockerenv");
 
@@ -27,4 +28,6 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+const withVarlock = varlockNextConfigPlugin();
+
+export default withVarlock(nextConfig);
