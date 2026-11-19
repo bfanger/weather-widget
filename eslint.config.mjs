@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Vercel deployment / reference project is not part of this codebase:
+    ".vercel/**",
   ]),
 ]);
 
