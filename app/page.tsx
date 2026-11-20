@@ -1,5 +1,7 @@
 import { Suspense } from "react";
-import { fetchWeather } from "../services/fetchWeather";
+import { connection } from "next/server";
+import { fetchWeather } from "@/services/fetchWeather";
+import WeatherWidget from "@/components/WeatherWidget";
 
 export default async function Home() {
   return (
@@ -10,6 +12,8 @@ export default async function Home() {
 }
 
 async function HomeAsync() {
+  await connection(); // dynamic route, because the timeline depends on the date
   const weather = await fetchWeather("52.0578725,5.1088778");
-  return <pre>{JSON.stringify(weather, null, 2)}</pre>;
+  console.info({ weather });
+  return <WeatherWidget />;
 }

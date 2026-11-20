@@ -31,7 +31,8 @@
     "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4.3.5",
     "typescript": "6",
-    "varlock": "^1.25.0"
+    "varlock": "^1.25.0",
+    "zustand": "^5.1.0"
   },
   "packageManager": "pnpm@12.21.0"
 }
