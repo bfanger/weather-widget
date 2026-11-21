@@ -1,12 +1,15 @@
 "use client";
 
-import { useTimelineStore } from "@/services/timelineStore";
-
 const pad = (n: number) => n.toString().padStart(2, "0");
 
-export default function Clock() {
-  const time = useTimelineStore((state) => state.time);
-  if (time === undefined) return null;
+interface Props {
+  /** timestamp (milliseconds since the epoch) */
+  time?: number;
+}
+export default function Clock({ time }: Props) {
+  if (time === undefined) {
+    return null;
+  }
 
   const date = new Date(time);
   const dateStr = `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(

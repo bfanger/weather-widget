@@ -1,16 +1,33 @@
 "use client";
 
+import { useState } from "react";
 import Clock from "@/components/Clock";
-import Timeline from "@/components/Timeline";
-import { useTimelineStore } from "@/services/timelineStore";
+import TimelineScroller from "@/components/TimelineScroller";
+import WeatherInfo from "@/components/WeatherInfo";
+import WeatherInfoSummary from "@/components/WeatherInfoSummary";
+import { getDailyData, getFrom, getHourData } from "@/services/forecast-fns";
+import { type ForecastData } from "@/services/fetchForecast";
 
-export default function WeatherWidget() {
-  const { setTime } = useTimelineStore();
+interface Props {
+  data: ForecastData;
+}
+
+export default function WeatherWidget({ data }: Props) {
+  const [time, setTime] = useState<number>();
+  const from = getFrom(data);
+  const hourData = time === undefined ? undefined : getHourData(data, time);
+  const dailyData = time === undefined ? undefined : getDailyData(data, time);
 
   return (
     <>
-      <Clock />
-      <Timeline onValueChange={setTime} />
+      <Clock time={time} />
+      <div className="fixed top-60">
+        {hourData && (
+          <WeatherInfo time={hourData.time} values={hourData.values} />
+        )}
+        {dailyData && <WeatherInfoSummary values={dailyData.values} />}
+      </div>
+      <TimelineScroller from={from} onTimeChange={setTime} />
     </>
   );
 }

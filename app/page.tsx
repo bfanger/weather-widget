@@ -1,19 +1,25 @@
 import { Suspense } from "react";
-import { connection } from "next/server";
-import { fetchWeather } from "@/services/fetchWeather";
 import WeatherWidget from "@/components/WeatherWidget";
+import { fetchForecast } from "@/services/fetchForecast";
 
-export default async function Home() {
+export default function Home({ searchParams }: PageProps<"/">) {
   return (
     <Suspense>
-      <HomeAsync />
+      <HomeAsync searchParams={searchParams} />
     </Suspense>
   );
 }
 
-async function HomeAsync() {
-  await connection(); // dynamic route, because the timeline depends on the date
-  const weather = await fetchWeather("52.0578725,5.1088778");
-  console.info({ weather });
-  return <WeatherWidget />;
+async function HomeAsync({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const params = await searchParams;
+  const location =
+    typeof params.location === "string"
+      ? params.location
+      : "52.0578725,5.1088778";
+  const data = await fetchForecast(location);
+  return <WeatherWidget data={data} />;
 }
