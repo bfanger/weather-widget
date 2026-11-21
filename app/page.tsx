@@ -1,12 +1,16 @@
 import { Suspense } from "react";
 import WeatherWidget from "@/components/WeatherWidget";
 import { fetchForecast } from "@/services/fetchForecast";
+import Header from "@/components/Header";
 
 export default function Home({ searchParams }: PageProps<"/">) {
   return (
-    <Suspense>
-      <HomeAsync searchParams={searchParams} />
-    </Suspense>
+    <>
+      <Header />
+      <Suspense>
+        <HomeAsync searchParams={searchParams} />
+      </Suspense>
+    </>
   );
 }
 

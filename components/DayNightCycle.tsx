@@ -6,17 +6,18 @@ interface Props {
   time: number;
 }
 export default function DayNightCycle({ time }: Props) {
-  const hours = new Date(time).getHours() + new Date(time).getMinutes() / 60;
-
+  const hours = new Date(time).getHours();
   const elevation = Math.sin(
     (Math.PI * (hours - sunrise)) / (sunset - sunrise),
   );
   const day = Math.max(elevation, 0);
   const night = Math.max(-elevation, 0);
   const dusk = 1 - day - night;
-  const sunVisible = hours >= sunrise && hours < sunset;
-  const sunFrac = (hours - sunrise) / (sunset - sunrise);
-
+  const startOfToday = new Date(time);
+  startOfToday.setHours(0, 0, 0, 0);
+  const sunFrac =
+    startOfToday.getTime() / 86400000 + (hours - sunrise) / (sunset - sunrise);
+  const sunAngle = (sunFrac - 0.5) * 360;
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 transition duration-1000 ease-out starting:opacity-0">
       <div
@@ -32,10 +33,9 @@ export default function DayNightCycle({ time }: Props) {
         style={{ opacity: dusk }}
       />
       <div
-        className="absolute top-0 left-1/2 h-full origin-bottom transition-opacity duration-200 ease-out"
+        className="absolute top-0 left-1/2 h-full origin-bottom transition-transform duration-200 ease-out"
         style={{
-          transform: `rotate(${(sunFrac - 0.5) * 180}deg)`,
-          opacity: sunVisible ? 1 : 0,
+          transform: `rotate(${sunAngle}deg)`,
         }}
       >
         <div className="absolute top-[20%] size-40 -translate-x-1/2 rounded-full bg-amber-300 opacity-50 blur-2xl" />

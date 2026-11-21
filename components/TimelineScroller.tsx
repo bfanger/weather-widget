@@ -77,7 +77,7 @@ function TimelineDay({ time, current }: { time: number; current: number }) {
   return (
     <div className="sticky top-[50vh] z-10 h-0 w-10">
       <div
-        className={`align-center absolute -top-5 right-0 flex h-10 w-10 justify-end pr-12 text-xl leading-10 font-bold uppercase ${
+        className={`align-center absolute -top-5 right-0 flex h-10 w-10 justify-end pr-15.5 text-xl leading-10 font-bold uppercase ${
           active ? "opacity-100" : "opacity-30"
         }`}
       >
@@ -93,9 +93,9 @@ function TimelineDay({ time, current }: { time: number; current: number }) {
 
 function TimelineHour({ time, active }: { time: number; active: boolean }) {
   return (
-    <div className="relative h-5 min-h-[2vh]">
+    <div className="relative h-7 min-h-[2vh]">
       <span
-        className={`align-center absolute -top-2 z-10 flex h-4 text-[10px] leading-4 font-(--font-dseg) transition-all duration-100 ${active ? "right-3 opacity-100" : "right-2 opacity-40"}`}
+        className={`align-center absolute -top-2 z-10 flex h-4 text-sm leading-4 transition-all duration-100 ${active ? "right-3 opacity-100" : "right-2 opacity-40"}`}
       >
         {new Date(time).toLocaleTimeString("en", {
           hour: "2-digit",

@@ -3,9 +3,20 @@ import localFont from "next/font/local";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const dseg = localFont({
-  src: "./fonts/DSEG7Classic-Regular.woff2",
-  variable: "--font-dseg7",
+const dseg14 = localFont({
+  src: [
+    {
+      path: "../node_modules/@fontsource/dseg14-classic/files/dseg14-classic-latin-400-normal.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../node_modules/@fontsource/dseg14-classic/files/dseg14-classic-latin-700-normal.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-dseg14",
   display: "swap",
 });
 
@@ -28,9 +39,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${dseg.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${dseg14.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-full flex-col bg-slate-950 font-sans text-slate-200">
+        {children}
+      </body>
     </html>
   );
 }

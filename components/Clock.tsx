@@ -21,7 +21,7 @@ export default function Clock({ time }: Props) {
     <div
       role="img"
       aria-label={`Date and time: ${date.toLocaleString()}`}
-      className="fixed top-0 left-0 z-10 flex items-center gap-4 bg-black/70 px-3 py-1 font-dseg7 text-lg text-red-500"
+      className="fixed top-0 left-0 z-10 flex items-center gap-4 bg-black/70 px-3 py-1 font-dseg14 text-lg font-bold text-red-500"
     >
       <span>{dateStr}</span>
       <span>{timeStr}</span>
