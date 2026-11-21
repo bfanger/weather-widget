@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Clock from "@/components/Clock";
+import DayNightCycle from "@/components/DayNightCycle";
 import TimelineScroller from "@/components/TimelineScroller";
 import WeatherInfo from "@/components/WeatherInfo";
 import WeatherInfoSummary from "@/components/WeatherInfoSummary";
@@ -20,6 +21,7 @@ export default function WeatherWidget({ data }: Props) {
 
   return (
     <>
+      {time && <DayNightCycle time={time} />}
       <Clock time={time} />
       <div className="fixed top-60">
         {hourData && (
