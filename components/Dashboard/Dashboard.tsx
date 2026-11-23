@@ -22,7 +22,7 @@ export default function Dashboard({
 }: Props) {
   return (
     <div
-      className="fixed bottom-2/5 left-3 aspect-1588/900 w-[60em] translate-y-1/2 rounded-md bg-[#58595F] bg-cover text-[10px] max-lg:text-[1vw] lg:left-1/2 lg:-translate-x-1/2"
+      className="fixed bottom-0 left-3 aspect-1588/900 w-[60em] rounded-md bg-[#58595F] bg-cover text-[10px] max-lg:text-[1.1vw] lg:left-1/2 lg:-translate-x-1/2 [@media(min-height:700px)]:bottom-2/5 [@media(min-height:700px)]:translate-y-1/2"
       style={{ backgroundImage: "url(" + dashboardJpg.src + ")" }}
     >
       <DashboardLabel label="Current time" x={24.7} y={8.2} variant="black" />
