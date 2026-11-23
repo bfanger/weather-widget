@@ -75,7 +75,7 @@ export default function TimelineScroller({
 function TimelineDay({ time, current }: { time: number; current: number }) {
   const active = new Date(time).getDate() === new Date(current).getDate();
   return (
-    <div className="sticky top-[50vh] z-10 h-0 w-10">
+    <div className="sticky top-[50vh] h-0 w-10">
       <div
         className={`align-center absolute -top-5 right-0 flex h-10 w-10 justify-end pr-15.5 text-xl leading-10 font-bold uppercase ${
           active ? "opacity-100" : "opacity-30"
@@ -95,7 +95,7 @@ function TimelineHour({ time, active }: { time: number; active: boolean }) {
   return (
     <div className="relative h-7 min-h-[2vh]">
       <span
-        className={`align-center absolute -top-2 z-10 flex h-4 text-sm leading-4 transition-all duration-100 ${active ? "right-3 opacity-100" : "right-2 opacity-40"}`}
+        className={`align-center absolute -top-2 flex h-4 text-sm leading-4 transition-all duration-100 ${active ? "right-3 opacity-100" : "right-2 opacity-40"}`}
       >
         {new Date(time).toLocaleTimeString("en", {
           hour: "2-digit",

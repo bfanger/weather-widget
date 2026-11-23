@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import DashboardIcon from "./DashboardIcon";
 import DashboardLabel from "./DashboardLabel";
 import DashboardValue from "./DashboardValue";
 import dashboardJpg from "./dashboard.jpg";
@@ -9,6 +10,7 @@ interface Props {
   humidity: number | null;
   windSpeed: number | null;
   precipitation: number | null;
+  weatherCode: number | null;
 }
 export default function Dashboard({
   time,
@@ -16,6 +18,7 @@ export default function Dashboard({
   humidity,
   windSpeed,
   precipitation,
+  weatherCode,
 }: Props) {
   return (
     <div
@@ -29,6 +32,7 @@ export default function Dashboard({
         humidity={humidity}
         windSpeed={windSpeed}
         precipitation={precipitation}
+        weatherCode={weatherCode}
       />
     </div>
   );
@@ -48,7 +52,7 @@ function DashboardCurrentTime() {
 
   return (
     <>
-      <DashboardLabel x={24.5} y={8.2} variant="black" label="Current time" />
+      <DashboardLabel x={24.7} y={8.2} variant="black" label="Current time" />
       <DashboardLabel x={5} y={1} label="Month" />
       <DashboardValue x={3} y={3.5} value={month} variant="orange" />
       <DashboardLabel x={15.5} y={1} label="Day" />
@@ -84,21 +88,21 @@ function DashboardDestinationTime({ time }: { time: string }) {
   return (
     <>
       <DashboardLabel
-        x={23.5}
+        x={23.8}
         y={20}
         variant="black"
         label="Destination time"
       />
       <DashboardLabel x={5} y={12.5} label="Month" />
-      <DashboardValue x={3} y={15.4} value={month} variant="green" />
+      <DashboardValue x={3} y={15.2} value={month} variant="green" />
       <DashboardLabel x={15.5} y={12.5} label="Day" />
-      <DashboardValue x={14} y={15.4} value={day} digits={2} variant="green" />
+      <DashboardValue x={14} y={15.2} value={day} digits={2} variant="green" />
       <DashboardLabel x={27} y={12.5} label="Year" />
-      <DashboardValue x={23} y={15.4} value={d.getFullYear()} variant="green" />
+      <DashboardValue x={23} y={15.2} value={d.getFullYear()} variant="green" />
       <DashboardLabel x={40} y={12.5} label="Hour" />
       <DashboardValue
         x={39}
-        y={15.4}
+        y={15.2}
         value={d.getHours()}
         digits={2}
         variant="green"
@@ -106,7 +110,7 @@ function DashboardDestinationTime({ time }: { time: string }) {
       <DashboardLabel x={49.5} y={12.5} label="Min" />
       <DashboardValue
         x={48}
-        y={15.4}
+        y={15.2}
         value={minute}
         digits={2}
         variant="green"
@@ -120,11 +124,13 @@ function DashboardWeather({
   humidity,
   windSpeed,
   precipitation,
+  weatherCode,
 }: {
   temperature: number | null;
   humidity: number | null;
   windSpeed: number | null;
   precipitation: number | null;
+  weatherCode: number | null;
 }) {
   return (
     <>
@@ -162,6 +168,7 @@ function DashboardWeather({
         digits={2}
         variant="yellow"
       />
+      <DashboardIcon x={46} y={24.5} code={weatherCode} />
     </>
   );
 }

@@ -19,6 +19,7 @@ export default function WeatherWidget({ data }: Props) {
   return (
     <>
       {time && <DayNightCycle time={time} />}
+      <TimelineScroller from={from} onTimeChange={setTime} />
       {time && hourData && (
         <Dashboard
           time={hourData.time}
@@ -26,9 +27,9 @@ export default function WeatherWidget({ data }: Props) {
           humidity={hourData.values.humidity}
           windSpeed={hourData.values.windSpeed}
           precipitation={hourData.values.precipitationProbability}
+          weatherCode={hourData.values.weatherCode}
         />
       )}
-      <TimelineScroller from={from} onTimeChange={setTime} />
     </>
   );
 }

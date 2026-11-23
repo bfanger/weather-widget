@@ -49,5 +49,19 @@ export default function WeatherIcon({ code }: Props) {
   if (entry === undefined) {
     return null;
   }
-  return <Image src={entry.src} width={100} height={100} alt={entry.alt} />;
+  return (
+    <div className="relative h-full w-full">
+      <Image
+        src={entry.src}
+        alt=""
+        aria-hidden
+        className="absolute inset-0 h-full w-full blur-xs"
+      />
+      <Image
+        src={entry.src}
+        className="h-full w-full opacity-80"
+        alt={entry.alt}
+      />
+    </div>
+  );
 }
