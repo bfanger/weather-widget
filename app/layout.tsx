@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Saira } from "next/font/google";
 import "./globals.css";
 
 const dseg14 = localFont({
@@ -30,6 +30,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const saira = Saira({
+  variable: "--font-saira",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
   title: "Weather forecast",
   description: "Assignment by Bob Fanger for Sopra Steria",
@@ -39,7 +44,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${dseg14.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${dseg14.variable} ${saira.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-slate-950 font-sans text-slate-200">
         {children}

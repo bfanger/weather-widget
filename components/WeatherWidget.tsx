@@ -1,12 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import Clock from "@/components/Clock";
+import Dashboard from "@/components/Dashboard/Dashboard";
 import DayNightCycle from "@/components/DayNightCycle";
 import TimelineScroller from "@/components/TimelineScroller";
-import WeatherInfo from "@/components/WeatherInfo";
-import WeatherInfoSummary from "@/components/WeatherInfoSummary";
-import { getDailyData, getFrom, getHourData } from "@/services/forecast-fns";
+import { getFrom, getHourData } from "@/services/forecast-fns";
 import { type ForecastData } from "@/services/fetchForecast";
 
 interface Props {
@@ -17,18 +15,19 @@ export default function WeatherWidget({ data }: Props) {
   const [time, setTime] = useState<number>();
   const from = getFrom(data);
   const hourData = time === undefined ? undefined : getHourData(data, time);
-  const dailyData = time === undefined ? undefined : getDailyData(data, time);
 
   return (
     <>
       {time && <DayNightCycle time={time} />}
-      <Clock time={time} />
-      <div className="fixed top-60">
-        {hourData && (
-          <WeatherInfo time={hourData.time} values={hourData.values} />
-        )}
-        {dailyData && <WeatherInfoSummary values={dailyData.values} />}
-      </div>
+      {time && hourData && (
+        <Dashboard
+          time={hourData.time}
+          temperature={hourData.values.temperature}
+          humidity={hourData.values.humidity}
+          windSpeed={hourData.values.windSpeed}
+          precipitation={hourData.values.precipitationProbability}
+        />
+      )}
       <TimelineScroller from={from} onTimeChange={setTime} />
     </>
   );
