@@ -32,6 +32,11 @@ export default function DashboardValue({
       )}
       style={{ left: `${x}em`, top: `${y}em` }}
     >
+      {typeof value === "number" && (
+        <div className="absolute top-1 right-2 -skew-x-6 text-[3.4em] opacity-10">
+          {"0".repeat(display.length)}
+        </div>
+      )}
       <div className="-skew-x-6 text-[3.4em] blur-xs">
         {sign}
         {display}

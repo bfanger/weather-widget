@@ -19,7 +19,7 @@ export default function DayNightCycle({ time }: Props) {
     startOfToday.getTime() / 86400000 + (hours - sunrise) / (sunset - sunrise);
   const sunAngle = (sunFrac - 0.5) * 360;
   return (
-    <div className="pointer-events-none fixed inset-0 transition duration-1000 ease-out starting:opacity-0">
+    <div className="pointer-events-none fixed inset-0 -z-10 transition duration-1000 ease-out starting:opacity-0">
       <div
         className="absolute inset-0 bg-linear-to-b from-slate-950 to-gray-900 transition-opacity duration-500"
         style={{ opacity: night }}
