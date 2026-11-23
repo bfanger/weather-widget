@@ -27,6 +27,14 @@ export async function fetchForecast(location: string) {
     { next: { revalidate: 300 } },
   );
   if (!response.ok) {
+    if (response.status === 429) {
+      const day = response.headers.get("X-RateLimit-Remaining-day");
+      const hour = response.headers.get("X-RateLimit-Remaining-hour");
+      const sec = response.headers.get("X-RateLimit-Remaining-second");
+      throw new Error(
+        `Too many requests, rate-limits remaining day: ${day ?? "?"}, hour: ${hour ?? "?"}, sec: ${sec ?? "?"}`,
+      );
+    }
     throw new Error(`Weather request failed: ${response.status}`);
   }
   const data: ForecastData = await response.json();
