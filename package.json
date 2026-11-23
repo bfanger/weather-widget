@@ -10,7 +10,8 @@
     "lint:prettier": "prettier --check .",
     "lint:tsc": "tsc --noEmit",
     "lint:eslint": "eslint --max-warnings=0",
-    "format": "eslint --fix && prettier --write ."
+    "format": "eslint --fix && prettier --write .",
+    "test": "vitest run"
   },
   "dependencies": {
     "@fontsource/dseg14-classic": "^5.3.0",
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.5",
     "@tailwindcss/turbopack": "^4.3.5",
+    "@testing-library/react": "^16.3.3",
     "@types/node": "^26.6.6",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
@@ -30,11 +32,13 @@
     "concurrently": "^10.0.7",
     "eslint": "^10.15.0",
     "eslint-config-next": "16.4.6",
+    "jsdom": "^31.0.1",
     "prettier": "^3.10.1",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4.3.5",
     "typescript": "6",
-    "varlock": "^1.25.0"
+    "varlock": "^1.25.0",
+    "vitest": "^5.1.1"
   },
-  "packageManager": "pnpm@12.21.0"
+  "packageManager": "pnpm@12.23.0"
 }

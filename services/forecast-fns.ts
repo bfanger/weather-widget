@@ -21,6 +21,6 @@ export function getDailyData(
 ): ForecastData["timelines"]["daily"][number] | undefined {
   const day = new Date(time).getDate();
   return data.timelines.daily.find(
-    (entry) => new Date(entry.time).getDate() === day,
+    (entry) => new Date(entry.time).getDate() === day, // with only 5 consecutive days, we don't need to compare month and year
   );
 }
