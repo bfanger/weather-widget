@@ -24,6 +24,7 @@ export async function fetchForecast(location: string) {
   });
   const response = await fetch(
     `https://api.tomorrow.io/v4/weather/forecast?${params}`,
+    { next: { revalidate: 300 } },
   );
   if (!response.ok) {
     throw new Error(`Weather request failed: ${response.status}`);
