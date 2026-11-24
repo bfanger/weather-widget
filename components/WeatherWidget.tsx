@@ -10,7 +10,6 @@ import { type ForecastData } from "@/services/fetchForecast";
 interface Props {
   data: ForecastData;
 }
-
 export default function WeatherWidget({ data }: Props) {
   const [time, setTime] = useState<number>();
   const from = getFrom(data);

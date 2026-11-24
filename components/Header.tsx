@@ -1,3 +1,6 @@
+import { Suspense } from "react";
+import GeoButton from "./GeoButton";
+
 export default function Header() {
   return (
     <header className="mt-20 overflow-x-clip overflow-y-visible text-center">
@@ -21,7 +24,7 @@ export default function Header() {
             Sopra&nbsp;Steria
           </a>
         </h2>
-        <p className="text-sm font-light opacity-60">
+        <p className="mb-3 text-sm font-light opacity-60">
           Weather information is provided by{" "}
           <a
             href="https://www.tomorrow.io"
@@ -31,6 +34,14 @@ export default function Header() {
             tomorrow.io
           </a>
         </p>
+        <p className="text-sm font-light opacity-60">
+          Dashboard inspired by the console from Back to the Future.
+          <br />
+          Scroll to see the forecasted weather
+        </p>
+        <Suspense>
+          <GeoButton />
+        </Suspense>
       </div>
     </header>
   );
